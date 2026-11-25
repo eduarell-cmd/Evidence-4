@@ -47,7 +47,7 @@ export function validateTaskInput(payload, { partial = false } = {}) {
       errors.push('El campo "title" es obligatorio y debe ser una cadena de texto.');
     } else {
       const trimmedTitle = payload.title.trim();
-      if (trimmedTitle.length < TITLE_MIN_LENGTH + 5 || trimmedTitle.length > TITLE_MAX_LENGTH) {
+      if (trimmedTitle.length < TITLE_MIN_LENGTH || trimmedTitle.length > TITLE_MAX_LENGTH) {
         errors.push(
           `El título debe tener entre ${TITLE_MIN_LENGTH} y ${TITLE_MAX_LENGTH} caracteres.`
         );
