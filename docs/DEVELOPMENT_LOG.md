@@ -97,11 +97,10 @@ Esta bitácora documenta cronológicamente las actividades realizadas, decisione
 - **Actividad:** Ejecución del flujo en `docs/PR_BLOCKED_PROCEDURE.md` usando la rama `fix/demo-blocked-pr`.
 - **Motivo:** Demostrar en condiciones reales que la integración continua y la protección de `main` impiden fusionar código con pruebas fallidas.
 - **Evidencia:**
+  - URL del Pull Request: `https://github.com/eduarell-cmd/Evidence-4/pull/1`
   - Commit con error intencional (regresión de validación): `37f07b6` → prueba falló: `1 failed | 13 passed`.
   - Commit con corrección restaurada: `1be42bb` → pruebas pasaron: `14 passed (14)`.
-  - Captura tomada del PR bloqueado con check `test-and-build` en rojo.
-  - URL del Pull Request: `[PENDIENTE: https://github.com/eduarell-cmd/Evidence-4/pull/...]`
-  - Merge en `main`: `[PENDIENTE: SHA tras fusionar]`
+  - Commit de merge en `main`: `ee50717`
 - **Problemas y soluciones:**
   - *Problema:* Al revertir el error, el diff neto entre la rama y `main` quedó vacío (`Files changed` sin cambios en GitHub). Esto ocurre porque los dos commits se cancelan.
   - *Solución:* Se incluyó la actualización de la bitácora (`DEVELOPMENT_LOG.md`) en el PR para que haya un cambio real que justifique el merge y la evidencia quede registrada.
