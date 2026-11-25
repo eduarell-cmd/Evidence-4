@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow — Gestor de Tareas y Entregas</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div>
+          <h1>TaskFlow</h1>
+          <p class="subtitle">Gestor de tareas y seguimiento de entregas</p>
+        </div>
+        <div id="health-badge" class="health-badge health-loading" role="status">
+          Verificando API...
+        </div>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="stats-grid" aria-label="Resumen de tareas">
+        <article class="stat-card">
+          <span class="stat-label">Total</span>
+          <strong id="stat-total" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Pendientes</span>
+          <strong id="stat-pending" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">En progreso</span>
+          <strong id="stat-progress" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Completadas</span>
+          <strong id="stat-done" class="stat-value">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Avance</span>
+          <strong id="stat-rate" class="stat-value">0%</strong>
+        </article>
+      </section>
+
+      <section class="panel" aria-labelledby="create-heading">
+        <h2 id="create-heading">Nueva tarea</h2>
+        <form id="task-form" class="task-form" novalidate>
+          <div class="field">
+            <label for="task-title">Título *</label>
+            <input
+              id="task-title"
+              name="title"
+              type="text"
+              minlength="3"
+              maxlength="100"
+              placeholder="Ej. Configurar pipeline de pruebas"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="task-priority">Prioridad</label>
+            <select id="task-priority" name="priority">
+              <option value="low">Baja</option>
+              <option value="medium" selected>Media</option>
+              <option value="high">Alta</option>
+            </select>
+          </div>
+          <div class="field field-wide">
+            <label for="task-description">Descripción</label>
+            <textarea
+              id="task-description"
+              name="description"
+              rows="2"
+              maxlength="500"
+              placeholder="Detalles opcionales (máx. 500 caracteres)"
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Agregar tarea</button>
+            <p id="form-feedback" class="feedback" role="alert" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="list-heading">
+        <div class="list-header">
+          <h2 id="list-heading">Tareas registradas</h2>
+          <div class="filters">
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="Buscar por título o descripción..."
+              aria-label="Buscar tareas"
+            />
+            <select id="filter-status" aria-label="Filtrar por estado">
+              <option value="">Todos los estados</option>
+              <option value="pending">Pendiente</option>
+              <option value="in_progress">En progreso</option>
+              <option value="done">Completada</option>
+            </select>
+            <select id="filter-priority" aria-label="Filtrar por prioridad">
+              <option value="">Todas las prioridades</option>
+              <option value="high">Alta</option>
+              <option value="medium">Media</option>
+              <option value="low">Baja</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="task-list" class="task-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
