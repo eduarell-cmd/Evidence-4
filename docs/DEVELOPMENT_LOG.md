@@ -106,12 +106,15 @@ Esta bitácora documenta cronológicamente las actividades realizadas, decisione
   - *Solución:* Se incluyó la actualización de la bitácora (`DEVELOPMENT_LOG.md`) en el PR para que haya un cambio real que justifique el merge y la evidencia quede registrada.
 
 ## Entrada 10 — Despliegue en producción y verificación final (5 etapas)
-- **Fecha:** `[PENDIENTE: AAAA-MM-DD]`
-- **Actividad:** Publicación de la aplicación siguiendo `docs/DEPLOYMENT.md` y verificación de `/api/health`, `/api/tasks` y la interfaz web.
+- **Fecha:** 2026-11-24
+- **Actividad:** Publicación de la aplicación en Render siguiendo `docs/DEPLOYMENT.md` y verificación de los tres puntos de control.
 - **Motivo:** Completar la liberación de la aplicación web y registrar el estado verificado de producción.
 - **Evidencia:**
-  - URL desplegada: `[PENDIENTE: https://...]`
-  - Respuesta de `/api/health`: `[PENDIENTE: HTTP 200 y JSON]`
-  - Tag de versión: `[PENDIENTE: v1.0.0]`
+  - URL desplegada: `https://evidence-4.onrender.com/`
+  - `GET /api/health` → HTTP 200: `{"status":"ok","service":"TaskFlow","environment":"production","timestamp":"2026-11-25T05:54:44.454Z"}`
+  - `GET /api/tasks` → 3 tareas, `stats.total: 3`
+  - `GET /` → HTTP 200 `text/html; charset=UTF-8` (interfaz web cargada)
+  - Commit desplegado en Render: `0327a1a` (Merge PR #2 → `main`)
 - **Problemas y soluciones:**
-  - `[PENDIENTE: Registrar incidencias de despliegue o configuración de variables de entorno si ocurrieron]`
+  - *Problema:* El primer despliegue falló con `Root directory 'health' does not exist` porque `/api/health` se colocó en el campo **Root Directory** de Render en lugar del campo **Health Check Path**.
+  - *Solución:* Se limpió el campo Root Directory (dejándolo vacío) y se colocó `/api/health` únicamente en Health Check Path. Se disparó un nuevo deploy manual desde el panel de Render y el servicio quedó activo.
