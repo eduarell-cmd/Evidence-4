@@ -93,16 +93,18 @@ Esta bitácora documenta cronológicamente las actividades realizadas, decisione
   - *Solución:* Usar `npm.cmd` en PowerShell o habilitar `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 
 ## Entrada 9 — Demostración de Pull Request bloqueado, corrección y fusión
-- **Fecha:** `[PENDIENTE: AAAA-MM-DD]`
-- **Actividad:** Ejecución del flujo en `docs/PR_BLOCKED_PROCEDURE.md` (rama `fix/demo-blocked-pr`, regresión intencional, PR bloqueado por `test-and-build`, corrección, aprobación y merge a `main`).
+- **Fecha:** 2026-11-24
+- **Actividad:** Ejecución del flujo en `docs/PR_BLOCKED_PROCEDURE.md` usando la rama `fix/demo-blocked-pr`.
 - **Motivo:** Demostrar en condiciones reales que la integración continua y la protección de `main` impiden fusionar código con pruebas fallidas.
 - **Evidencia:**
+  - Commit con error intencional (regresión de validación): `37f07b6` → prueba falló: `1 failed | 13 passed`.
+  - Commit con corrección restaurada: `1be42bb` → pruebas pasaron: `14 passed (14)`.
+  - Captura tomada del PR bloqueado con check `test-and-build` en rojo.
   - URL del Pull Request: `[PENDIENTE: https://github.com/eduarell-cmd/Evidence-4/pull/...]`
-  - Commit con error intencional: `[PENDIENTE: SHA]`
-  - Commit con corrección: `[PENDIENTE: SHA]`
-  - Commit de merge en `main`: `[PENDIENTE: SHA]`
+  - Merge en `main`: `[PENDIENTE: SHA tras fusionar]`
 - **Problemas y soluciones:**
-  - `[PENDIENTE: Anotar observaciones durante la revisión, aprobación y merge del PR]`
+  - *Problema:* Al revertir el error, el diff neto entre la rama y `main` quedó vacío (`Files changed` sin cambios en GitHub). Esto ocurre porque los dos commits se cancelan.
+  - *Solución:* Se incluyó la actualización de la bitácora (`DEVELOPMENT_LOG.md`) en el PR para que haya un cambio real que justifique el merge y la evidencia quede registrada.
 
 ## Entrada 10 — Despliegue en producción y verificación final (5 etapas)
 - **Fecha:** `[PENDIENTE: AAAA-MM-DD]`
